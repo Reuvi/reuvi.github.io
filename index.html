@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reuthi — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of projects by Reuthi (GitHub: Reuvi)"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23000000'/%3E%3Ctext x='24' y='30' text-anchor='middle' font-size='20' fill='white' font-family='Arial, Helvetica, sans-serif'%3ER%3C/text%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        --bg: #0b0f17;
+        --card: #111827;
+        --muted: #94a3b8;
+        --accent: #7c3aed;
+        --accent-2: #22d3ee;
+        --text: #e5e7eb;
+        --chip: #1f2937;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        background: radial-gradient(
+            1200px 600px at 10% 10%,
+            rgba(124, 58, 237, 0.25),
+            transparent 50%
+          ),
+          radial-gradient(
+            800px 400px at 90% 20%,
+            rgba(34, 211, 238, 0.22),
+            transparent 50%
+          ),
+          var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      header {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        justify-content: space-between;
+        margin: 10px 0 20px;
+      }
+      .brand {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .brand .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        font-weight: 800;
+      }
+      .brand h1 {
+        font-size: 1.6rem;
+        margin: 0;
+      }
+      .brand p {
+        margin: 2px 0 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .btn {
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        font-weight: 600;
+        box-shadow: 0 10px 24px rgba(34, 211, 238, 0.15);
+      }
+      .hero {
+        padding: 24px;
+        border: 1px solid #1f2937;
+        background-color: rgba(15, 23, 42, 0.6);
+        border-radius: 18px;
+        display: grid;
+        gap: 10px;
+      }
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 14px 0 6px;
+      }
+      .chip {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--chip);
+        color: var(--muted);
+        cursor: pointer;
+        border: 1px solid #243041;
+      }
+      .chip.active {
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.25),
+          rgba(34, 211, 238, 0.25)
+        );
+        color: var(--text);
+        border-color: #3a4b66;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 16px;
+        margin-top: 18px;
+      }
+      .card {
+        grid-column: span 12;
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid #1f2937;
+        border-radius: 16px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+        box-shadow: 0 12px 24px rgba(2, 6, 23, 0.35);
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        border-color: #334155;
+        box-shadow: 0 18px 32px rgba(2, 6, 23, 0.45);
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        padding: 6px 10px;
+        background: #0b1220;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        color: #a5b4fc;
+        border: 1px solid #293449;
+      }
+      .title {
+        font-weight: 700;
+        font-size: 1.15rem;
+      }
+      .desc {
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .link-btn {
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid #283244;
+        background: #0b1220;
+        font-weight: 600;
+      }
+      .link-btn:hover {
+        border-color: #3b4a6a;
+      }
+      footer {
+        margin: 34px 0 16px;
+        color: var(--muted);
+        text-align: center;
+      }
+      @media (min-width: 700px) {
+        .card {
+          grid-column: span 6;
+        }
+      }
+      @media (min-width: 1000px) {
+        .card {
+          grid-column: span 4;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">
+          <div class="avatar">R</div>
+          <div>
+            <h1>Reuthi — Portfolio</h1>
+            <p>
+              Selected projects from security, Roblox game dev, ML, and more.
+            </p>
+          </div>
+        </div>
+        <a class="btn" href="https://github.com/Reuvi">GitHub: @Reuvi</a>
+      </header>
+
+      <section class="hero">
+        <div class="row">
+          <h2 style="margin: 0; font-size: 1.25rem">Projects</h2>
+          <div class="filters" id="filters">
+            <div class="chip active" data-filter="all">All</div>
+            <div class="chip" data-filter="Roblox">Roblox</div>
+            <div class="chip" data-filter="Security/CTF">Security/CTF</div>
+            <div class="chip" data-filter="Web/ML">Web/ML</div>
+            <div class="chip" data-filter="Java/Python">Java/Python</div>
+          </div>
+        </div>
+        <div class="grid" id="grid"></div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Reuthi • Built with plain HTML/CSS/JS
+      </footer>
+    </div>
+
+    <script>
+      const projects = [
+        {
+          name: "Blaster-Gun-System",
+          category: "Roblox",
+          desc: "Modular Roblox blaster/laser gun. Server-authoritative raycasts, config-driven stats, and polished VFX/SFX.",
+          repo: "https://github.com/Reuvi/Blaster-Gun-System",
+        },
+        {
+          name: "Dialogue-Quest-NPC",
+          category: "Roblox",
+          desc: "Branching NPC dialogue + quest-giver template (states, objectives, rewards) with clean client/server split.",
+          repo: "https://github.com/Reuvi/Dialogue-Quest-NPC",
+        },
+        {
+          name: "AI-Enemy-Shooter",
+          category: "Roblox",
+          desc: "Drop-in enemy NPC that navigates and fires projectiles at players. Ships with .rbxm assets and helper pathing script.",
+          repo: "https://github.com/Reuvi/AI-Enemy-Shooter",
+        },
+        {
+          name: "Pneumonia-Detector",
+          category: "Web/ML",
+          desc: "Flask web app that uploads chest X-rays and runs a saved CNN model (BestModel/) to classify Pneumonia vs Normal.",
+          repo: "https://github.com/Reuvi/Pneumonia-Detector",
+        },
+        {
+          name: "luminthH-Game",
+          category: "Roblox",
+          desc: "3D Clash Royale–style arena: three bridges (lanes), card spawning, and tower destruction—built in Roblox.",
+          repo: "https://github.com/Reuvi/luminthH-Game",
+        },
+        {
+          name: "picoCTF2024",
+          category: "Security/CTF",
+          desc: "Writeups across crypto, RE, web, forensics. Team rank highlights included in README.",
+          repo: "https://github.com/Reuvi/picoCTF2024",
+        },
+        {
+          name: "RuNourished",
+          category: "Web/ML",
+          desc: "Hackathon app: generate recipes from ingredients/images. React + Node/Express + Flask + YOLOv8 + HF.",
+          repo: "https://github.com/Reuvi/RuNourished",
+        },
+        {
+          name: "RUCTF",
+          category: "Security/CTF",
+          desc: "Auth & authn themed CTF presented at RU Security. Contains 100–500 level challenges.",
+          repo: "https://github.com/Reuvi/RUCTF",
+        },
+        {
+          name: "ArithJava",
+          category: "Java/Python",
+          desc: "Java expression parser/evaluator: parse any arithmetic expression and compute the result.",
+          repo: "https://github.com/Reuvi/ArithJava",
+        },
+        {
+          name: "backgammon_game",
+          category: "Java/Python",
+          desc: "Python backgammon project with itch.io page for builds and details.",
+          repo: "https://github.com/Reuvi/backgammon_game",
+        },
+        {
+          name: "pico_HorseTrack",
+          category: "Security/CTF",
+          desc: "Heap exploitation exercise: leak + tcache poisoning + GOT overwrite. Comes with exploit.py.",
+          repo: "https://github.com/Reuvi/pico_HorseTrack",
+        },
+        {
+          name: "NonLibC_ROP_ATTACK",
+          category: "Security/CTF",
+          desc: "Template for non-libc ROP chains yielding reverse shells. MIT licensed.",
+          repo: "https://github.com/Reuvi/NonLibC_ROP_ATTACK",
+        },
+        {
+          name: "CL_Chess",
+          category: "Java/Python",
+          desc: "Command-line Java chess that supports castling, en passant, stalemates, promotion, and full rules.",
+          repo: "https://github.com/Reuvi/CL_Chess",
+        },
+        {
+          name: "PicoCTF2023",
+          category: "Security/CTF",
+          desc: "Writeups for PicoCTF 2023 with category breakdowns and ranks.",
+          repo: "https://github.com/Reuvi/PicoCTF2023",
+        },
+      ];
+
+      function cardHTML(p) {
+        return `
+  <article class="card" data-category="${p.category}">
+    <div class="row">
+      <div class="title">${p.name}</div>
+      <span class="tag">${p.category}</span>
+    </div>
+    <div class="desc">${p.desc}</div>
+    <div class="links">
+      <a class="link-btn" href="${p.repo}" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+  </article>`;
+      }
+
+      const grid = document.getElementById("grid");
+      grid.innerHTML = projects.map(cardHTML).join("");
+
+      document.querySelectorAll(".chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          document
+            .querySelectorAll(".chip")
+            .forEach((c) => c.classList.remove("active"));
+          chip.classList.add("active");
+          const f = chip.dataset.filter;
+          document.querySelectorAll(".card").forEach((card) => {
+            const ok = f === "all" || card.dataset.category === f;
+            card.style.display = ok ? "" : "none";
+          });
+        });
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
